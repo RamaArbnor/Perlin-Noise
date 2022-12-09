@@ -1,36 +1,33 @@
-let xoff1 = 0
-let xoff2 = 0
-let inc = 0.01
-let start = 0;
+// let xoff1 = 0
+// let xoff2 = 0
+let inc = 0.01;
+let w = 1
+
 
 function setup() {
   // put setup code here
-  createCanvas(400, 400)
+  createCanvas(200, 200);
+  pixelDensity(1);
+
   // frameRate(2)
 }
 
 function draw() {
-  background(51)
-  // put drawing code here
+  // background(51)
 
-  // var x = random(width)
-  // var x = map(noise(xoff1), 0, 1, 0, width)
-  // xoff1 += 0.01
-  
-  let xoff2 = start
-  stroke(0,255,0)
-  noFill()
-  beginShape()
-  for(let i = 0; i < width; i++){
-    var y = map(noise(xoff2), 0, 1, 0, width)
-    // stroke(255);
-    vertex(i, y)
-    xoff2 += inc
+  let yoff = 0
+  for (let y = 0; y < width; y++) {
+    let xoff = 0;
+    for (let x = 0; x < height; x++) {
+      // let index = (x + y * width) * 4;
+      noStroke()
+      let r = noise(xoff, yoff) * 255
+      fill(r, r, r, r)
+      rect(x * w, y * w, w, w);
+      xoff += inc;
+    }
+    yoff += inc;
   }
-  endShape()
 
-  start += inc
-  // noLoop()
 
-  // ellipse(x, y, 24, 24)
 }
